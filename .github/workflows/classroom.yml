@@ -53,6 +53,6 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /home/${{ secrets.SSH_USERNAME }}/person-service
-            echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose rm -f
-            echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose pull
-            echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose up --build -d
+            sudo -S docker compose rm -f
+            sudo -S docker compose pull
+            sudo -S docker compose up --build -d
