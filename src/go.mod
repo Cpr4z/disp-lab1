@@ -1,4 +1,4 @@
-module persserv
+module persserf
 
 go 1.21.0
 
