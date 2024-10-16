@@ -34,6 +34,24 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Login (Yandex Cloud)
+        id: login-cr
+        uses: yc-actions/yc-cr-login@v1
+        with:
+          yc-sa-json-credentials: ${{ secrets.AUTHORIZED_KEY }}
+
+#      - name: Build image (Yandex Cloud)
+#        env:
+#          CR_REGISTRY: crp5voalhkmqn0hcignj
+#          CR_REPOSITORY: my-regystry
+#          IMAGE_TAG: ${{ github.sha }}
+#        run: |
+#          docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:user$IMAGE_TAG ./homeworks/K33412/Tanachev\ Egor/HW6/task/user
+#          docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:user$IMAGE_TAG
+#          docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:market$IMAGE_TAG ./homeworks/K33412/Tanachev\ Egor/HW6/task/market
+#          docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:market$IMAGE_TAG
+
+
       - name: Copy code to VM
         uses: appleboy/scp-action@v0.1.4
         with:
@@ -46,6 +64,9 @@ jobs:
 
       - name: Run app on VM
         uses: appleboy/ssh-action@v1.0.0
+        env:
+          YANDEX_KEY: ${{ secrets.YANDEX_KEY }}
+          IMAGE_TAG: ${{ github.sha }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
