@@ -54,7 +54,7 @@ jobs:
         run: yc container registry configure-docker
 
       - name: Push Docker image to Yandex Cloud
-        run: docker push cr.yandex/${{ secrets.YC_REGISTRY_ID }}/my-regystry/my-go-service:latest
+        run: docker push cr.yandex/${{ secrets.YC_REGISTRY_ID }}/my-go-service:latest
 
       - name: Authenticate Yandex Cloud
         run: |
@@ -68,6 +68,6 @@ jobs:
             --cores 2 \
             --memory 4 \
             --core-fraction 100 \
-            --container-image cr.yandex/${{ secrets.YC_REGISTRY_ID }}/my-regystry/my-go-service:latest \
+            --container-image cr.yandex/${{ secrets.YC_REGISTRY_ID }}/my-go-service:latest \
             --container-restart-policy always \
             --network-interface subnet-id=e2lij5f875ganniqfjdt,nat-ip-version=ipv4
