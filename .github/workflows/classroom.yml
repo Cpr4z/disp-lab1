@@ -68,6 +68,7 @@ jobs:
             --cores 2 \
             --memory 4 \
             --core-fraction 100 \
+            --folder-id b1gfidujn8ni4sd1b39a \
             --container-image cr.yandex/${{ secrets.YC_REGISTRY_ID }}/my-go-service:latest \
             --container-restart-policy always \
             --network-interface subnet-id=e2lij5f875ganniqfjdt,nat-ip-version=ipv4
