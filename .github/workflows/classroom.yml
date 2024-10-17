@@ -39,6 +39,10 @@ jobs:
       - name: Build Docker image
         run: docker build -t cr.yandex/${{ secrets.YC_REGISTRY_ID }}/my-go-service:latest .
 
+      - name: Login to Yandex Cloud Container Registry
+        run: |
+          echo ${{ secrets.YC_OAUTH_TOKEN }} | docker login --username json_key --password-stdin cr.yandex
+
       - name: Push Docker image to Yandex Cloud
         run: docker push cr.yandex/${{ secrets.YC_REGISTRY_ID }}/my-go-service:latest
 
