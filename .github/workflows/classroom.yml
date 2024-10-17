@@ -56,6 +56,10 @@ jobs:
       - name: Push Docker image to Yandex Cloud
         run: docker push cr.yandex/${{ secrets.YC_REGISTRY_ID }}/my-go-service:latest
 
+      - name: Authenticate Yandex Cloud
+        run: |
+          yc config set token ${{ secrets.YC_OAUTH_TOKEN }}
+
       - name: Deploy Docker container on Yandex Cloud VM
         run: |
           yc compute instance create-with-container \
