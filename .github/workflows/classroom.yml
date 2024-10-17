@@ -44,8 +44,11 @@ jobs:
           curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
           echo "PATH=$HOME/yandex-cloud/bin:$PATH" >> $GITHUB_ENV
 
-      - name: Authenticate Yandex Cloud
-        run: yc config set token ${{ secrets.YC_OAUTH_TOKEN }}
+      - name: Login (Yandex Cloud)
+        id: login-cr
+        uses: yc-actions/yc-cr-login@v1
+        with:
+          yc-sa-json-credentials: ${{ secrets.AUTHORIZED_KEY }}
 
       - name: Login to Yandex Container Registry
         run: yc container registry configure-docker
