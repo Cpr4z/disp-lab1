@@ -36,8 +36,16 @@ jobs:
         with:
           go-version: '1.21.1'
 
+      - name: Install Yandex CLI
+        run: |
+          curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
+          yc --version
+
       - name: Build Docker image
         run: docker build -t cr.yandex/${{ secrets.YC_REGISTRY_ID }}/my-go-service:latest .
+
+      - name: Authenticate Yandex Cloud
+        run: yc config set token ${{ secrets.AUTHORIZED_KEY }}
 
       - name: Login to Yandex Cloud Container Registry
         run: |
@@ -45,14 +53,6 @@ jobs:
 
       - name: Push Docker image to Yandex Cloud
         run: docker push cr.yandex/${{ secrets.YC_REGISTRY_ID }}/my-go-service:latest
-
-      - name: Install Yandex CLI
-        run: |
-          curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
-          yc --version
-
-      - name: Authenticate Yandex Cloud
-        run: yc config set token ${{ secrets.AUTHORIZED_KEY }}
 
       - name: Deploy Docker container on Yandex Cloud VM
         run: |
