@@ -64,7 +64,7 @@ jobs:
         run: |
           yc compute instance create-with-container \
             --name my-instance \
-            --zone ru-central1-a \
+            --zone ru-central1-d \
             --cores 2 \
             --memory 4 \
             --core-fraction 100 \
