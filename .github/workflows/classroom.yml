@@ -67,4 +67,4 @@ jobs:
             --public-ip \
             --container-image cr.yandex/${{ secrets.YC_REGISTRY_ID }}/my-go-service:latest \
             --container-restart-policy always \
-            --network-interface subnet-id=<SUBNET_ID>,nat-ip-version=ipv4
+            --network-interface subnet-id=e2lij5f875ganniqfjdt,nat-ip-version=ipv4
