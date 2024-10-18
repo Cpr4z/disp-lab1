@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	API_TAG    = "/api/v1"
+	API_TAG    = "api/v1"
 	PERSON_TAG = "/persons"
 )
 
